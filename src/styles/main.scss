@@ -3,13 +3,79 @@
 
 body {
   font-family: $font;
+  font-weight: 400;
 }
 
 a {
-  color: $dark;
-  transition: $tr;
+  text-decoration: none;
 }
 
-a:hover {
-  color: $accent;
+.header {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 71px;
+  position: relative;
+  // добавляем перекладину формы по центру
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 27px;
+    background-color: $accent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  // добавляем нижние углы формы
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 24px;
+    background-image: url(../images/header-bottom.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: -24px;
+  }
+  &__logo {
+    background-color: $accent;
+    padding: 17px 45px 0 45px;
+    // закругляем левый верхний угол
+    border-radius: 10px 0 0 0;
+    // добавляем слева изображение мягкого угла для перехода в центральную часть с помощью after
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 69px;
+      height: 71px;
+      background-image: url(../images/header-left.svg);
+      position: absolute;
+      top: 0;
+      right: -69px;
+    }
+  }
+  &__link {
+    color: $light;
+    font-size: 20px;
+    background-color: $accent;
+    padding: 17px 45px 0 45px;
+    // закругляем правый верхний угол
+    border-radius: 0 10px 0 0;
+    // добавляем справа изображение мягкого угла для перехода в центральную часть с помощью before
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 69px;
+      height: 71px;
+      background-image: url(../images/header-right.svg);
+      position: absolute;
+      top: 0;
+      left: -69px;
+    }
+  }
 }
