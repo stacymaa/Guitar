@@ -4,7 +4,8 @@
 body {
   font-family: $font;
   font-weight: 400;
-  background-color: #1F2023;
+  color: $light;
+  background-color: #1f2023;
 }
 
 a {
@@ -16,8 +17,12 @@ a {
   align-items: stretch;
   justify-content: space-between;
   height: 71px;
-  position: relative;
-  margin-bottom: 40px;
+  // закрепляем заголовок (чтобы даже во время прокрутки сайта он оставался на месте)
+  position: fixed;
+  // сдвигает header
+  width: 100%;
+  // если не добавим top: 0;, то наш заголовок сдвинется на margin-top: 135px; вместе с banner
+  top: 0;
   // добавляем перекладину формы по центру
   &::before {
     content: "";
@@ -51,7 +56,7 @@ a {
     }
     // добавляем слева изображение мягкого угла для перехода в центральную часть
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 69px;
       height: 71px;
@@ -62,9 +67,9 @@ a {
     }
   }
   &__link {
-    color: $light;
     font-size: 20px;
     background-color: $accent;
+    color: $light;
     padding: 17px 45px 0 45px;
     // закругляем правый верхний угол
     border-radius: 0 10px 0 0;
@@ -84,7 +89,7 @@ a {
     }
     // добавляем справа изображение мягкого угла для перехода в центральную часть
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 69px;
       height: 71px;
@@ -112,28 +117,95 @@ a {
   background-size: cover;
   border-radius: 50px;
   padding: 100px 50px;
+  margin-top: 135px;
+  // расположим два блока (main и info) в banner при помощи gap и flex-basis
+  gap: 40px;
+  &__main {
+    flex-basis: 61%;
+  }
+  &__info {
+    flex-basis: calc(39% - 50px);
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    border: 1px solid $light;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+    height: 149px;
+    // соединяем border с изображением справа
+    position: relative;
+    margin-right: 80px;
+    // margin между блоками
+    &:not(:last-child) {
+      margin-bottom: 19px;
+    }
+    // для создания правой части границы/фигуры
+    &::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 151px;
+      background-image: url(../images/banner-info-decor.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      right: -80px;
+      top: -1px;
+    }
+  }
+  &__decor {
+    position: absolute;
+    top: 0;
+    right: -80px;
+    border: 1px solid $light;
+    border-radius: 10px;
+    padding: 9px;
+  }
+  &__info1 {
+    font-weight: 200;
+    font-size: 24px;
+    line-height: 110%;
+    margin-left: 30px;
+  }
+  &__info2 {
+    display: block;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 110%;
+    padding-top: 15px;
+  }
   &__title {
     font-weight: 700;
     font-size: 64px;
     line-height: 110%;
-    color: $light;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 0;
     margin-bottom: 20px;
-    max-width: 1031px;
   }
   &__btn {
+    display: block;
+    width: 100%;
     font-weight: 600;
     font-size: 20px;
     line-height: 110%;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $light;
     background-color: $accent;
-    border: none;
+    color: $light;
+    border: 1px solid $accent;
     border-radius: 20px;
-
-    padding: 54px 424px 54px 424px;
+    padding: 53px;
+    transition: $tr;
+    cursor: pointer;
+    // добавляем медиа, так как для планшетов и смартфонов эти стили не актуальны (и могут даже скорее криво работать)
+    // тут мы записываем условие, что это будет работать только на тех устройствах, которые могут считывать курсор)
+    @media (hover: hover) {
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }
 
@@ -142,15 +214,12 @@ a {
   border-radius: 20px;
   position: relative;
   padding: 30px 332px 30px 30px;
-
-  margin-bottom: 135px;
   &__title {
     font-weight: 400;
     font-size: 24px;
     line-height: 110%;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $light;
     margin-top: 0;
     margin-bottom: 30px;
   }
@@ -158,14 +227,15 @@ a {
     font-weight: 400;
     font-size: 20px;
     line-height: 150%;
-    color: $light;
     margin-top: 0;
     margin-bottom: 0;
   }
   &__img {
-    position: absolute; 
-    top: -68px;
-    right: -20px;
+    position: absolute;
+    // модификатор для изображения
+    &._electroguitar {
+      top: -68px;
+      right: -20px;
+    }
   }
 }
-
