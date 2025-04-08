@@ -127,6 +127,7 @@ a {
     flex-basis: calc(39% - 50px);
   }
   &__item {
+    // размещаем текст внутри
     display: flex;
     flex-direction: column;
     justify-content: end;
