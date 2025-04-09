@@ -21,7 +21,6 @@ a {
   height: 71px;
   // закрепляем заголовок (чтобы даже во время прокрутки сайта он оставался на месте)
   position: fixed;
-  // сдвигает header ???
   width: 100%;
   // если не добавим top: 0;, то наш заголовок сдвинется на margin-top: 135px; вместе с banner
   top: 0;
@@ -142,47 +141,45 @@ a {
     margin-right: 80px;
     // для плавного перехода цвета при наведении
     transition: $tr;
+    // чтобы текст был сверху фона
+    z-index: 1;
     // отступы между блоками
     & + & {
       margin-top: 19px;
     }
-    // для создания правой части границы/фигуры
     &::before {
       content: "";
       display: block;
-      width: 80px;
-      height: 151px;
-      background-image: url(../images/banner-info-decor.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
+      height: 149px;
+      background-color: $accent;
+      border: 1px solid $accent;
+      border-radius: 20px 0 0 20px;
       position: absolute;
-      right: -80px;
       top: -1px;
-    }
-    // для смены цвета этой части при наведении курсора
-    &::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 151px;
-      background-image: url(../images/banner-info-decor-hover.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      position: absolute;
-      right: -80px;
-      top: -1px;
+      right: 0;
+      // чтобы текст был сверху фона
+      z-index: -1;
+      // регулируем видимость элемента во время hover
+      width: 100%;
       opacity: 0;
       transition: $tr;
+      // делаем плавный единый переход при наведении
+      transform: translateX(50%) scale(0);
     }
     &:hover {
-      background-color: $accent;
-      border-color: $accent;
+      &::before {
+        opacity: 1;
+        // делаем плавный единый переход при наведении
+        transform: translateX(0) scale(1);
+      }
       .banner__decor {
         background-color: $accent;
         border-color: $accent;
-      }
-      &::after {
-        opacity: 1;
+        &::after {
+          opacity: 1;
+          // стилизуем эффекты при наведении курсора
+          transform: translate(0, 0) scale(1);
+        }
       }
     }
   }
@@ -216,6 +213,35 @@ a {
     height: 50px;
     // для плавного перехода цвета при наведении
     transition: $tr;
+    &::before {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 151px;
+      background-image: url(../images/banner-info-decor.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      right: 0;
+      top: -2px;
+    }
+    // для смены цвета этой части при наведении курсора
+    &::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 151px;
+      background-image: url(../images/banner-info-decor-hover.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      right: 0;
+      top: -2px;
+      opacity: 0;
+      transition: $tr;
+      // стилизуем эффекты при наведении курсора
+      transform: translate(-50%, 0) scale(0);
+    }
   }
   &__title {
     font-weight: 700;
