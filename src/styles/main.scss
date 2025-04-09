@@ -16,10 +16,12 @@ a {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
+  // чтобы header был сверху других элементов
+  z-index: 999;
   height: 71px;
   // закрепляем заголовок (чтобы даже во время прокрутки сайта он оставался на месте)
   position: fixed;
-  // сдвигает header
+  // сдвигает header ???
   width: 100%;
   // если не добавим top: 0;, то наш заголовок сдвинется на margin-top: 135px; вместе с banner
   top: 0;
@@ -138,12 +140,14 @@ a {
     // соединяем border с изображением справа
     position: relative;
     margin-right: 80px;
-    // margin между блоками
-    &:not(:last-child) {
-      margin-bottom: 19px;
+    // для плавного перехода цвета при наведении
+    transition: $tr;
+    // отступы между блоками
+    & + & {
+      margin-top: 19px;
     }
     // для создания правой части границы/фигуры
-    &::after {
+    &::before {
       content: "";
       display: block;
       width: 80px;
@@ -155,27 +159,63 @@ a {
       right: -80px;
       top: -1px;
     }
+    // для смены цвета этой части при наведении курсора
+    &::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 151px;
+      background-image: url(../images/banner-info-decor-hover.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      right: -80px;
+      top: -1px;
+      opacity: 0;
+      transition: $tr;
+    }
+    &:hover {
+      background-color: $accent;
+      border-color: $accent;
+      .banner__decor {
+        background-color: $accent;
+        border-color: $accent;
+      }
+      &::after {
+        opacity: 1;
+      }
+    }
   }
-  &__decor {
-    position: absolute;
-    top: 0;
-    right: -80px;
-    border: 1px solid $light;
-    border-radius: 10px;
-    padding: 9px;
-  }
-  &__info1 {
+  &__text {
     font-weight: 200;
     font-size: 24px;
     line-height: 110%;
     margin-left: 30px;
+    margin-bottom: 30px;
+    span {
+      display: block;
+      font-weight: 700;
+      font-size: 32px;
+      margin-top: 15px;
+    }
   }
-  &__info2 {
-    display: block;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 110%;
-    padding-top: 15px;
+  &__decor {
+    position: absolute;
+    border: 1px solid $light;
+    border-radius: 10px;
+    top: 0;
+    right: -80px;
+    // задаем размеры фигуры и размещаем изображение по центру
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // можно было бы с помощью padding задать размеры
+    // но тогда важны размеры изображений - поэтому лучше задать фикс ширину/высоту
+    width: 50px;
+    height: 50px;
+    // для плавного перехода цвета при наведении
+    transition: $tr;
   }
   &__title {
     font-weight: 700;
