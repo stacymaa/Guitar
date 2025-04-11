@@ -14,6 +14,14 @@ a {
   text-decoration: none;
 }
 
+.title-h2 {
+font-weight: 700;
+font-size: 32px;
+line-height: 110%;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+
 .header {
   display: flex;
   align-items: stretch;
@@ -321,23 +329,25 @@ a {
   gap: 64px;
   // alternate - чтобы анимация двигалась туда-обратно
   animation: move-left 20s infinite linear alternate;
+  margin-top: 150px;
+  margin-bottom: 150px;
   &__text {
     font-weight: 200;
     font-size: 24px;
     line-height: 110%;
-    border: 1px solid $light;
+    border: 1px solid $grey;
     border-radius: 50px;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     position: relative;
     &::before {
       content: "";
       display: block;
       position: absolute;
       background-color: $accent;
-      width: 18px;
-      height: 18px;
-      left: -44px;
-      top: 16px;
+      width: 16px;
+      height: 16px;
+      left: -42px;
+      top: calc(50% - 8px);
       border-radius: 100%;
     }
   }
@@ -353,5 +363,68 @@ a {
   }
   100% {
     transform: translate(-100%, 0);
+  }
+}
+
+.course {
+  display: flex;
+  gap: 70px;
+  &__title {
+    flex-basis: 395px;
+  }
+  &__control {
+    margin-top: 40px;
+  }
+  &__content {
+    flex-basis: calc(100% - 395px - 70px);
+    width: calc(100% - 395px - 70px);
+  }
+}
+
+.course-control {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  &__prev, &__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border: 1px solid $light;
+    border-radius: 100%;
+    // сбрасываем стили, указанные в swiper
+    right: inherit;
+    left: inherit;
+    position: inherit;
+    &::after {
+      content: '';
+      width: 49px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &:hover {
+      background-color: $accent;
+    }
+  }
+  &__prev {
+    &::after {
+      background-image: url(../images/ui/arrow-prev.svg);
+    }
+  }
+  &__next {
+    &::after {
+      background-image: url(../images/ui/arrow-next.svg);
+    }
+  }
+}
+
+.slider-teacher {
+  &__item {
+    background-color: $dark ;
+  }
+  &__img {
+    width: 100%;
   }
 }
