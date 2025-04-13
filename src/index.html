@@ -28,7 +28,7 @@
         <div class="banner__main">
           <!-- этот div добавляем, чтобы применить для main flex и отделить кнопку от верхнего контента -->
           <div>
-            <h1 class="banner__title">Обучение игре на электрогитаре</h1>
+            <h1 class="banner__title">Обучение игре на&nbsp;электрогитаре</h1>
             <div class="banner__box banner-box">
               <h2 class="banner-box__title">О направлении</h2>
               <p class="banner-box__text">
@@ -99,40 +99,139 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide slider-teacher__item">
                 <!-- устанавливаем фон при наведении -->
-                <img src="./images/teacher/grid.png" alt="" class="slider-teacher__grid">
-                <img src="./images/teacher/01.png" alt="" class="slider-teacher__img">
+                <img
+                  src="./images/teacher/grid.png"
+                  alt=""
+                  class="slider-teacher__grid"
+                />
+                <img
+                  src="./images/teacher/01.png"
+                  alt=""
+                  class="slider-teacher__img"
+                />
                 <p class="slider-teacher__name">Иван Варфоломеев</p>
               </div>
               <div class="swiper-slide slider-teacher__item">
-                <img src="./images/teacher/grid.png" alt="" class="slider-teacher__grid">
-                <img src="./images/teacher/02.png" alt="" class="slider-teacher__img">
+                <img
+                  src="./images/teacher/grid.png"
+                  alt=""
+                  class="slider-teacher__grid"
+                />
+                <img
+                  src="./images/teacher/02.png"
+                  alt=""
+                  class="slider-teacher__img"
+                />
                 <p class="slider-teacher__name">Алина Волкова</p>
               </div>
               <div class="swiper-slide slider-teacher__item">
-                <img src="./images/teacher/grid.png" alt="" class="slider-teacher__grid">
-                <img src="./images/teacher/03.png" alt="" class="slider-teacher__img">
+                <img
+                  src="./images/teacher/grid.png"
+                  alt=""
+                  class="slider-teacher__grid"
+                />
+                <img
+                  src="./images/teacher/03.png"
+                  alt=""
+                  class="slider-teacher__img"
+                />
                 <p class="slider-teacher__name">Никита Власов</p>
               </div>
               <div class="swiper-slide slider-teacher__item">
-                <img src="./images/teacher/grid.png" alt="" class="slider-teacher__grid">
-                <img src="./images/teacher/01.png" alt="" class="slider-teacher__img">
+                <img
+                  src="./images/teacher/grid.png"
+                  alt=""
+                  class="slider-teacher__grid"
+                />
+                <img
+                  src="./images/teacher/01.png"
+                  alt=""
+                  class="slider-teacher__img"
+                />
                 <p class="slider-teacher__name">Иван Варфоломеев</p>
               </div>
               <div class="swiper-slide slider-teacher__item">
-                <img src="./images/teacher/grid.png" alt="" class="slider-teacher__grid">
-                <img src="./images/teacher/02.png" alt="" class="slider-teacher__img">
+                <img
+                  src="./images/teacher/grid.png"
+                  alt=""
+                  class="slider-teacher__grid"
+                />
+                <img
+                  src="./images/teacher/02.png"
+                  alt=""
+                  class="slider-teacher__img"
+                />
                 <p class="slider-teacher__name">Алина Волкова</p>
               </div>
               <div class="swiper-slide slider-teacher__item">
-                <img src="./images/teacher/grid.png" alt="" class="slider-teacher__grid">
-                <img src="./images/teacher/03.png" alt="" class="slider-teacher__img">
+                <img
+                  src="./images/teacher/grid.png"
+                  alt=""
+                  class="slider-teacher__grid"
+                />
+                <img
+                  src="./images/teacher/03.png"
+                  alt=""
+                  class="slider-teacher__img"
+                />
                 <p class="slider-teacher__name">Никита Власов</p>
               </div>
             </div>
           </div>
-          <div class="course__schedule"></div>
+          <div class="course__schedule">
+            <div class="accordion">
+              <button class="accordion__btn">Программа обучения</button>
+              <div class="accordion__panel" style="max-height: inherit">
+                <ul class="accordion__list">
+                  <li class="accordion__item">Знакомство с электрогитарой</li>
+                  <li class="accordion__item">Возьмите её в руки</li>
+                  <li class="accordion__item">Верный спутник: Усилитель</li>
+                  <li class="accordion__item">Аккорды</li>
+                  <li class="accordion__item">Техника игры правой рукой</li>
+                  <li class="accordion__item">Основа игры на соло-гитаре</li>
+                  <li class="accordion__item">Мастерство риффа</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <section class="steps">
+      <!-- в этом блоке контейнер внутри, а не снаружи, т.к. фон выходит за его границы, а текст нет -->
+      <div class="container">
+        <h2 class="title-h2">Как проходит обучение?</h2>
+        <div class="steps__list">
+          <div class="steps__item">
+            <img src="./images/ui/pencil.svg" alt="" class="steps__icon" />
+            <p class="steps__text">
+              Оставляете заявку и наш менеджер перезванивает вам, чтобы
+              назначить день встречи с преподавателем
+            </p>
+          </div>
+          <div class="steps__item">
+            <img src="./images/ui/graduate.svg" alt="" class="steps__icon" />
+            <p class="steps__text">
+              В день встречи с преподавателем он оценивает ваш уровень навыков,
+              если ранее вы пробовали играть
+            </p>
+          </div>
+          <div class="steps__item">
+            <img src="./images/ui/steps.svg" alt="" class="steps__icon" />
+            <p class="steps__text">
+              Преподаватель составляет индивидуальную программу обучения и
+              график занятий
+            </p>
+          </div>
+          <div class="steps__item">
+            <img src="./images/ui/guitar.svg" alt="" class="steps__icon" />
+            <p class="steps__text">
+              Начинаете обучение, чтобы после стать мастером игры на
+              электрогитаре!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
