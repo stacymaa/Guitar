@@ -41,6 +41,11 @@ button {
   // если не добавим top: 0;, то наш заголовок сдвинется на margin-top: 135px; вместе с banner
   top: 0;
   left: 0;
+
+  @media (max-width: $r_tab) {
+    height: 66px;
+  }
+
   // добавляем перекладину формы по центру
   &::before {
     content: "";
@@ -52,6 +57,11 @@ button {
     top: 0;
     left: 0;
     z-index: -1;
+
+    @media (max-width: $r_tab) {
+      top: -2px;
+    }
+
   }
   &__logo {
     background-color: $accent;
@@ -61,7 +71,7 @@ button {
     position: relative;
 
     @media (max-width: $r_desk) {
-       padding: 17px 20px 0 20px;
+      padding: 17px 20px 0 20px;
     }
 
     // добавляем левый нижний угол
@@ -87,6 +97,15 @@ button {
       position: absolute;
       top: 0;
       right: -69px;
+
+      @media (max-width: $r_tab) {
+        height: 88px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: 0px;
+        right: -67px;
+      }
+
     }
   }
   &__info {
@@ -98,7 +117,7 @@ button {
 
     @media (max-width: $r_desk) {
       padding: 20px 20px 0 20px;
-   }
+    }
 
     // добавляем правый нижний угол
     &::before {
@@ -123,6 +142,16 @@ button {
       position: absolute;
       top: 0;
       left: -69px;
+
+      @media (max-width: $r_tab) {
+        height: 68px;
+        // поправляем внутренние углы при уменьшении высоты блока
+        background-size: auto;
+        background-repeat: no-repeat;
+        left: -67px;
+        top: -2px;
+      }
+
     }
   }
   &__link {
@@ -132,11 +161,16 @@ button {
     transition: $tr;
     // нижнее подчеркивание
     border-bottom: 1px solid $light;
+    
     @media (hover: hover) {
       &:hover {
         border-bottom: 1px solid $accent;
       }
     }
+    @media (max-width: $r_tab) {
+      font-size: 16px;
+    }
+
   }
 }
 
@@ -146,9 +180,12 @@ button {
     svg {
       width: 400px;
       height: 31px;
+      
       @media (max-width: $r_desk) {
+        // смотрим, в какой момент переход становится плавным - так и получается 39vw
         width: clamp(300px, 39vw, 400px);
       }
+
     }
   }
   // указываем размер лого в footer
@@ -183,6 +220,16 @@ button {
   border-radius: 50px;
   padding: 100px 50px;
   margin-top: 135px;
+
+  @media (max-width: $r_desk_full) {
+    flex-direction: column;
+    padding: 80px 40px;
+  }
+
+  @media (max-width: ($r_desk - 24px)) {
+    padding: 50px 30px;
+  }
+
   // расположим два блока (main и info) в banner при помощи gap и flex-basis
   gap: 40px;
   &__main {
@@ -193,33 +240,39 @@ button {
   }
   &__info {
     flex-basis: calc(40% - 50px);
+
+    @media (max-width: $r_desk_full) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
   }
   &__item {
     // размещаем текст внутри
     display: flex;
     flex-direction: column;
     justify-content: end;
-    border: 1px solid $light;
+    box-sizing: border-box;
+    border: 1.5px solid $light;
     border-right: none;
     border-radius: 20px 0 0 20px;
-    height: 149px;
+    height: 151px;
     // соединяем border с изображением справа
     position: relative;
+    padding: 30px;
     margin-right: 80px;
     // для плавного перехода цвета при наведении
     transition: $tr;
     // чтобы текст был сверху фона
     z-index: 1;
-    // отступы между блоками
-    & + & {
-      margin-top: 19px;
-    }
+
     &::before {
       content: "";
       display: block;
       height: 149px;
       background-color: $accent;
-      border: 1px solid $accent;
+      border: 1.5px solid $accent;
       border-radius: 20px 0 0 20px;
       position: absolute;
       top: -1px;
@@ -234,9 +287,11 @@ button {
       transform: scale(0);
       transform-origin: top right;
     }
+
     @media (hover: hover) {
       &:hover {
         &::before {
+          width: 100%;
           opacity: 1;
           // делаем плавный единый переход при наведении
           transform: scale(1);
@@ -252,23 +307,57 @@ button {
         }
       }
     }
+    @media (max-width: $r_desk_full) {
+      padding: 30px 0 30px 30px;
+    }
+    @media (max-width: ($r_desk - 24px)) {
+      justify-content: center;
+      height: inherit;
+      margin-right: 0;
+      border-radius: 20px;
+      border-right: 1.5px solid $light;
+      padding: 25px 10px 25px 100px;
+    }
+
+    // отступы между блоками
+    & + & {
+      margin-top: 19px;
+    
+      // сбрасываем отступы, чтобы при применении grid все было ровно
+      @media (max-width: $r_desk_full) {
+        margin-top: 0;
+      }
+    
+    }
   }
   &__text {
     font-weight: 200;
     font-size: 24px;
     line-height: 110%;
-    margin-left: 30px;
-    margin-bottom: 30px;
+    margin: 0;
+
+    @media (max-width: ($r_desk - 24px)) {
+      font-size: 18px;
+    }
+
     span {
       display: block;
       font-weight: 700;
       font-size: 32px;
+      line-height: 110%;
       margin-top: 15px;
+      // margin-top: 20px;
+
+      @media (max-width: ($r_desk - 24px)) {
+        font-size: 20px;
+        margin-top: 12px;
+      }
+
     }
   }
   &__decor {
     position: absolute;
-    border: 1px solid $light;
+    border: 1.5px solid $light;
     border-radius: 10px;
     top: 0;
     right: -80px;
@@ -295,6 +384,9 @@ button {
       position: absolute;
       right: 0;
       top: -2px;
+      @media (max-width: ($r_desk - 24px)) {
+        display: none;
+      }
     }
     // для смены цвета этой части при наведении курсора
     &::after {
@@ -314,6 +406,13 @@ button {
       transform: scale(0);
       transform-origin: top left;
     }
+
+    @media (max-width: ($r_desk - 24px)) {
+      top: calc(50% - 25px);
+      right: inherit;
+      left: 30px;
+    }
+
   }
   &__title {
     font-weight: 700;
@@ -321,6 +420,11 @@ button {
     line-height: 110%;
     margin-top: 0;
     margin-bottom: 20px;
+
+    @media (max-width: $r_desk_full) {
+      font-size: clamp(50px, 4vw + 1rem, 64px);
+    }
+
   }
   &__btn {
     display: block;
@@ -338,19 +442,32 @@ button {
     transition: $tr;
     // добавляем медиа, так как для планшетов и смартфонов эти стили не актуальны (и могут даже скорее криво работать)
     // тут мы записываем условие, что это будет работать только на тех устройствах, которые могут считывать курсор)
+    
     @media (hover: hover) {
       &:hover {
         background-color: transparent;
       }
+      @media (max-width: $r_desk_full) {
+        margin-top: 50px;
+      }
+
     }
   }
 }
 
 .banner-box {
-  border: 1px $light solid;
+  border: 1.5px solid $light;
   border-radius: 20px;
   position: relative;
   padding: 30px 332px 30px 30px;
+
+ @media (max-width: $r_desk_full_over) {
+  padding-right: clamp(200px, 20vw, 332px);
+ }
+ @media (max-width: $r_desk_full) {
+  padding-right: 332px;
+ }
+
   &__title {
     font-weight: 400;
     font-size: 24px;
@@ -366,6 +483,12 @@ button {
     line-height: 150%;
     margin-top: 0;
     margin-bottom: 0;
+
+    // чтобы гитара максимально долго не начинала заходить на текст
+    @media (max-width: $r_desk_full) {
+      max-width: 572px;
+    }
+
   }
   &__img {
     position: absolute;
@@ -373,6 +496,19 @@ button {
     &._electroguitar {
       top: -68px;
       right: -20px;
+
+      @media (max-width: $r_desk_full_over) {
+        // 22px, так как выше этого значения нет изменений
+        width: clamp(200px, 22vw, 332px);;
+        top: inherit;
+        bottom: -3px;
+      }
+      @media (max-width: $r_desk_full) {
+        width: auto;
+        top: -68px;
+        bottom: inherit;
+      }
+
     }
   }
 }
@@ -402,12 +538,14 @@ button {
       border-radius: 100%;
     }
   }
+  
   // чтобы при наведении анимация останавливалась, но не сбрасывалась в ноль
   @media (hover: hover) {
     &:hover {
       animation-play-state: paused;
     }
   }
+
 }
 
 @keyframes move-left {
@@ -490,6 +628,7 @@ button {
     transition: $tr;
     // чтобы углы изображения тоже закруглились
     overflow: hidden;
+    
     @media (hover: hover) {
       &:hover {
         border-color: $accent;
@@ -499,6 +638,7 @@ button {
         }
       }
     }
+
   }
   &__grid {
     position: absolute;
@@ -715,12 +855,14 @@ button {
     border-radius: 20px;
     padding: 30px;
     transition: $tr;
+    
     @media (hover: hover) {
       &:hover {
         background-color: transparent;
         color: $accent;
       }
     }
+
   }
 }
 
@@ -756,6 +898,7 @@ button {
       background-size: contain;
       transition: $tr;
     }
+    
     @media (hover: hover) {
       &:hover {
         background-color: $accent;
@@ -770,6 +913,7 @@ button {
         }
       }
     }
+
     // сделаем общий before, т.к. инструментов с почти одинаковым before несколько
     &::before {
       content: "";
@@ -837,11 +981,13 @@ button {
     color: $accent;
     box-shadow: 0 4px 0 -3px $accent;
     transition: $tr;
+    
     @media (hover: hover) {
       &:hover {
         box-shadow: 0 4px 0 -3px transparent;
       }
     }
+
   }
   &__copy {
     text-align: right;
@@ -863,6 +1009,7 @@ button {
     background-color: $light;
     border-radius: 10px;
     transition: $tr;
+    
     @media (hover: hover) {
       &:hover {
         background-color: $accent;
@@ -871,6 +1018,7 @@ button {
         }
       }
     }
+
     // добавляем иконки через маску для смены цвета при наведении
     &::after {
       content: "";
